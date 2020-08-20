@@ -1,8 +1,25 @@
 /**
+ * MIT License
+ *
  * Copyright (c) 2014-present, Facebook, Inc.
  *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
  */
 
 (function (global, factory) {
@@ -2357,9 +2374,11 @@
     };
 
     Map.prototype.map = function map (mapper, context) {
+      var this$1 = this;
+
       return this.withMutations(function (map) {
         map.forEach(function (value, key) {
-          map.set(key, mapper.call(context, value, key, map));
+          map.set(key, mapper.call(context, value, key, this$1));
         });
       });
     };
@@ -3206,7 +3225,7 @@
 
       return this.withMutations(function (list) {
         for (var i = 0; i < this$1.size; i++) {
-          list.set(i, mapper.call(context, list.get(i), i, list));
+          list.set(i, mapper.call(context, list.get(i), i, this$1));
         }
       });
     };
@@ -3751,6 +3770,7 @@
         this.size = 0;
         this._map.clear();
         this._list.clear();
+        this.__altered = true;
         return this;
       }
       return emptyOrderedMap();
@@ -3762,10 +3782,6 @@
 
     OrderedMap.prototype.remove = function remove (k) {
       return updateOrderedMap(this, k, NOT_SET);
-    };
-
-    OrderedMap.prototype.wasAltered = function wasAltered () {
-      return this._map.wasAltered() || this._list.wasAltered();
     };
 
     OrderedMap.prototype.__iterate = function __iterate (fn, reverse) {
@@ -3792,6 +3808,7 @@
           return emptyOrderedMap();
         }
         this.__ownerID = ownerID;
+        this.__altered = false;
         this._map = newMap;
         this._list = newList;
         return this;
@@ -3814,6 +3831,7 @@
     omap._list = list;
     omap.__ownerID = ownerID;
     omap.__hash = hash;
+    omap.__altered = false;
     return omap;
   }
 
@@ -3866,6 +3884,7 @@
       omap._map = newMap;
       omap._list = newList;
       omap.__hash = undefined;
+      omap.__altered = true;
       return omap;
     }
     return makeOrderedMap(newMap, newList);
