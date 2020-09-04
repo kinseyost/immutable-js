@@ -5898,6 +5898,14 @@
   exports.isAssociative = isAssociative;
   exports.isOrdered = isOrdered;
   exports.isValueObject = isValueObject;
+  exports.isSeq = isSeq;
+  exports.isList = isList;
+  exports.isMap = isMap;
+  exports.isOrderedMap = isOrderedMap;
+  exports.isStack = isStack;
+  exports.isSet = isSet;
+  exports.isOrderedSet = isOrderedSet;
+  exports.isRecord = isRecord;
   exports.get = get;
   exports.getIn = getIn;
   exports.has = has;

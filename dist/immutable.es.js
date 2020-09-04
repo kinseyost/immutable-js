@@ -5869,4 +5869,4 @@ var Immutable = {
 var Iterable = Collection;
 
 export default Immutable;
-export { version, Collection, Iterable, Seq, Map, OrderedMap, List, Stack, Set, OrderedSet, Record, Range, Repeat, is, fromJS, hash, isImmutable, isCollection, isKeyed, isIndexed, isAssociative, isOrdered, isValueObject, get, getIn, has, hasIn, merge$1 as merge, mergeDeep, mergeWith$1 as mergeWith, mergeDeepWith, remove, removeIn, set, setIn, update, updateIn };
+export { version, Collection, Iterable, Seq, Map, OrderedMap, List, Stack, Set, OrderedSet, Record, Range, Repeat, is, fromJS, hash, isImmutable, isCollection, isKeyed, isIndexed, isAssociative, isOrdered, isValueObject, isSeq, isList, isMap, isOrderedMap, isStack, isSet, isOrderedSet, isRecord, get, getIn, has, hasIn, merge$1 as merge, mergeDeep, mergeWith$1 as mergeWith, mergeDeepWith, remove, removeIn, set, setIn, update, updateIn };
