@@ -5495,6 +5495,7 @@ var Record = function Record(defaultValues, name) {
         l.set(this$1._indices[k], v === this$1._defaultValues[k] ? undefined : v);
       });
     });
+    return this;
   };
 
   var RecordTypePrototype = (RecordType.prototype = Object.create(
