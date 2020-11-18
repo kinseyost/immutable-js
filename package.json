@@ -21,6 +21,10 @@
   "typescript": {
     "definition": "dist/immutable.d.ts"
   },
+  "resolutions": {
+    "@definitelytyped/typescript-versions": "^0.0.59",
+    "gulp/glob-watcher/chokidar": "^3.4.3"
+  },
   "files": [
     "dist",
     "README.md",
