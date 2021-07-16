@@ -1,11 +1,4 @@
 /**
- * Copyright (c) 2014-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
-
-/**
  * This file provides type definitions for use with the Flow type checker.
  *
  * An important caveat when using these definitions is that the types for
@@ -600,7 +593,8 @@ declare class KeyedSeq<K, +V> extends Seq<K, V> mixins KeyedCollection<K, V> {
 
 declare class IndexedSeq<+T>
   extends Seq<number, T>
-  mixins IndexedCollection<T> {
+  mixins IndexedCollection<T>
+{
   static <T>(values?: Iterable<T>): IndexedSeq<T>;
 
   static of<T>(...values: T[]): IndexedSeq<T>;
@@ -899,7 +893,8 @@ declare function isList(maybeList: mixed): boolean %checks(maybeList instanceof
   List);
 declare class List<+T>
   extends IndexedCollection<T>
-  mixins UpdatableInCollection<number, T> {
+  mixins UpdatableInCollection<number, T>
+{
   static (collection?: Iterable<T>): List<T>;
 
   static of<T>(...values: T[]): List<T>;
@@ -1057,7 +1052,8 @@ declare function isMap(maybeMap: mixed): boolean %checks(maybeMap instanceof
   Map);
 declare class Map<K, +V>
   extends KeyedCollection<K, V>
-  mixins UpdatableInCollection<K, V> {
+  mixins UpdatableInCollection<K, V>
+{
   static <K, V>(values?: Iterable<[K, V]> | PlainObjInput<K, V>): Map<K, V>;
 
   static isMap: typeof isMap;
@@ -1154,7 +1150,8 @@ declare function isOrderedMap(
 ): boolean %checks(maybeOrderedMap instanceof OrderedMap);
 declare class OrderedMap<K, +V>
   extends Map<K, V>
-  mixins UpdatableInCollection<K, V> {
+  mixins UpdatableInCollection<K, V>
+{
   static <K, V>(
     values?: Iterable<[K, V]> | PlainObjInput<K, V>
   ): OrderedMap<K, V>;
@@ -1912,7 +1909,7 @@ declare function fromJS(
     sequence: KeyedCollection<string, mixed> | IndexedCollection<mixed>,
     path?: Array<string | number>
   ) => mixed
-): mixed;
+): Collection<mixed, mixed>;
 
 declare function is(first: mixed, second: mixed): boolean;
 declare function hash(value: mixed): number;
